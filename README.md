@@ -1,5 +1,7 @@
 # Two Cents
 
+> A todo list for couples
+
 ## Dependencies
 
 - [Go](https://golang.org/)
