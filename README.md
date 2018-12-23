@@ -14,7 +14,7 @@
 ## Running
 
 - `docker-compose up`
-- `open http://localhost:3001`
+- `open http://localhost`
 
 ## Stopping
 

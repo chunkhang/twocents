@@ -5,8 +5,8 @@ services:
     image: twocents:latest
     tty: true
     environment:
-      - PORT=3001
+      - PORT=3000
     ports:
-      - 3001:3001
+      - 80:3000
     volumes:
       - ./:/twocents
