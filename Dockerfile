@@ -1,24 +1,12 @@
-# BUILD
-FROM golang:1.11.2-alpine AS builder
+FROM golang:1.11.2-alpine
 
-# Install git for fetching dependencies
 RUN apk update && apk add --no-cache git
 
-# Copy source files
-COPY . /app
-WORKDIR /app
+COPY . /twocents
+WORKDIR /twocents
 
-# Fetch dependencies
 RUN go get -d -v
 
-# Build binary
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -ldflags="-w -s" -o /app/main
+RUN go get github.com/pilu/fresh
 
-# EXECUTABLE
-FROM scratch
-
-# Copy binary
-COPY --from=builder /app/main /app/main
-
-# Run binary
-ENTRYPOINT ["/app/main"]
+CMD ["fresh"]
