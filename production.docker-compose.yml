@@ -3,12 +3,10 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: production.Dockerfile
     image: twocents:latest
-    tty: true
     environment:
       - PORT=3000
     ports:
       - 80:3000
-    volumes:
-      - ./:/twocents
+    restart: always

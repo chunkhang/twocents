@@ -22,7 +22,7 @@ func main() {
 
 	// Routes
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Bye, World!")
+		return c.String(http.StatusOK, "Hello world. I am running from Docker!")
 	})
 
 	// Start server
