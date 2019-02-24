@@ -1,7 +1,7 @@
 package route
 
 import (
-	"github.com/chunkhang/twocents/handler"
+	"github.com/chunkhang/twocents/controller"
 	"github.com/chunkhang/twocents/view"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
@@ -22,7 +22,7 @@ func Init() *echo.Echo {
 
 	e.Renderer = view.Init()
 
-	e.GET("/", handler.HomeHandler)
+	e.GET("/", controller.Home)
 
 	return e
 }

@@ -1,4 +1,4 @@
-package handler
+package controller
 
 import (
 	"net/http"
@@ -6,7 +6,8 @@ import (
 	"github.com/labstack/echo"
 )
 
-func HomeHandler(c echo.Context) error {
+// Home is the controller for index page
+func Home(c echo.Context) error {
 	return c.Render(http.StatusOK, "home.html", map[string]interface{}{
 		"msg": "Hello World!",
 	})
