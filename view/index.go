@@ -25,12 +25,12 @@ func (t *Registry) Render(w io.Writer, name string, data interface{}, c echo.Con
 
 // Init initializes the templates
 func Init() *Registry {
-	t := &Registry{}
+	r := &Registry{}
 
 	templates := make(map[string]*template.Template)
-	templates["home.html"] = template.Must(template.ParseFiles("view/home.tmpl", "view/base.tmpl"))
+	templates["index.html"] = template.Must(template.ParseFiles("view/index.tmpl", "view/base.tmpl"))
 
-	t.templates = templates
+	r.templates = templates
 
-	return t
+	return r
 }
