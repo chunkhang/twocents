@@ -20,7 +20,7 @@ func Init() *echo.Echo {
 	e.Use(middleware.CORS())
 	e.Use(middleware.Recover())
 
-	e.Renderer = template.Init()
+	e.Renderer = view.Init()
 
 	e.GET("/", handler.HomeHandler)
 
