@@ -2,7 +2,7 @@ package route
 
 import (
 	"github.com/chunkhang/twocents/handler"
-	"github.com/chunkhang/twocents/template"
+	"github.com/chunkhang/twocents/view"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )
