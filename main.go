@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"html/template"
 	"io"
@@ -12,12 +13,17 @@ import (
 	"github.com/labstack/gommon/log"
 )
 
-type Template struct {
-	templates *template.Template
+type TemplateRegistry struct {
+	templates map[string]*template.Template
 }
 
-func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
-	return t.templates.ExecuteTemplate(w, name, data)
+func (t *TemplateRegistry) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
+	tmpl, ok := t.templates[name]
+	if !ok {
+		err := errors.New("Template not found -> " + name)
+		return err
+	}
+	return tmpl.ExecuteTemplate(w, "base.html", data)
 }
 
 func main() {
@@ -30,9 +36,10 @@ func main() {
 	}))
 	e.Use(middleware.Recover())
 
-	// Templates
-	e.Renderer = &Template{
-		templates: template.Must(template.ParseGlob("view/*.tmpl")),
+	templates := make(map[string]*template.Template)
+	templates["home.html"] = template.Must(template.ParseFiles("view/home.tmpl", "view/base.tmpl"))
+	e.Renderer = &TemplateRegistry{
+		templates: templates,
 	}
 
 	// Routes
