@@ -7,12 +7,12 @@ import (
 	"github.com/labstack/echo"
 )
 
-// Home is the controller for index page
+// Home is the controller for home page
 func Home(c echo.Context) (err error) {
 	defer util.Catch(&err)
 
-	err = c.Render(http.StatusOK, "index.tmpl", map[string]interface{}{
-		"msg": "Hello World!",
+	err = c.Render(http.StatusOK, "home.tmpl", map[string]interface{}{
+		"message": "Hello World!",
 	})
 	util.Check(err)
 
