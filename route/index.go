@@ -8,6 +8,10 @@ import (
 	"github.com/labstack/echo/middleware"
 )
 
+const (
+	logFormat = "${time_rfc3339}: ${method} ${uri} ${status} (${latency_human})\n"
+)
+
 // Init initalizes the router
 func Init() (e *echo.Echo, err error) {
 	defer util.Catch(&err)
@@ -16,7 +20,7 @@ func Init() (e *echo.Echo, err error) {
 	e.HideBanner = true
 
 	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
-		Format: "${time_rfc3339}: ${method} ${uri} ${status} (${latency_human})\n",
+		Format: logFormat,
 	}))
 	e.Use(middleware.Gzip())
 	e.Use(middleware.CORS())
