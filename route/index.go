@@ -2,14 +2,16 @@ package route
 
 import (
 	"github.com/chunkhang/twocents/controller"
+	"github.com/chunkhang/twocents/util"
 	"github.com/chunkhang/twocents/view"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )
 
 // Init initalizes the router
-func Init() *echo.Echo {
-	e := echo.New()
+func Init() (e *echo.Echo, err error) {
+	defer util.Catch(&err)
+	e = echo.New()
 
 	e.HideBanner = true
 
@@ -20,9 +22,12 @@ func Init() *echo.Echo {
 	e.Use(middleware.CORS())
 	e.Use(middleware.Recover())
 
-	e.Renderer = view.Init()
+	renderer, err := view.Init()
+	util.Check(err)
+
+	e.Renderer = renderer
 
 	e.GET("/", controller.Home)
 
-	return e
+	return
 }

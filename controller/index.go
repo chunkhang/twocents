@@ -8,7 +8,7 @@ import (
 
 // Home is the controller for index page
 func Home(c echo.Context) error {
-	return c.Render(http.StatusOK, "index.html", map[string]interface{}{
+	return c.Render(http.StatusOK, "index.tmpl", map[string]interface{}{
 		"msg": "Hello World!",
 	})
 }
