@@ -1,5 +1,16 @@
 {{define "body"}}
 
-  <h1 class="title">{{index . "message"}}</h1>
+<section class="hero is-fullheight-with-navbar is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        {{index . "title"}}
+      </h1>
+      <h2 class="subtitle">
+        {{index . "subtitle"}}
+      </h2>
+    </div>
+  </div>
+</section>
 
 {{end}}

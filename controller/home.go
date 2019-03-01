@@ -12,7 +12,8 @@ func Home(c echo.Context) (err error) {
 	defer util.Catch(&err)
 
 	err = c.Render(http.StatusOK, "home.tmpl", map[string]interface{}{
-		"message": "Hello World!",
+		"title":    "Hello World",
+		"subtitle": "Welcome to Two Cents",
 	})
 	util.Check(err)
 
