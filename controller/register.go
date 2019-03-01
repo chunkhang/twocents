@@ -7,11 +7,11 @@ import (
 	"github.com/labstack/echo"
 )
 
-// Home returns the home page
-func Home(c echo.Context) (err error) {
+// Register returns the register page
+func Register(c echo.Context) (err error) {
 	defer util.Catch(&err)
 
-	err = c.Render(http.StatusOK, "home.tmpl", map[string]interface{}{
+	err = c.Render(http.StatusOK, "register.tmpl", map[string]interface{}{
 		"title":    "Hello World",
 		"subtitle": "Welcome to Two Cents",
 	})

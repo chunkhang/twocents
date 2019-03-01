@@ -33,5 +33,9 @@ func Init() (e *echo.Echo, err error) {
 
 	e.GET("/", controller.Home)
 
+	e.GET("/register", controller.Register)
+
+	e.POST("/users", controller.CreateUser)
+
 	return
 }
