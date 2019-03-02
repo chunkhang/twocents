@@ -7,8 +7,8 @@ import (
 	"github.com/labstack/echo"
 )
 
-// Register returns the register page
-func Register(c echo.Context) (err error) {
+// RegisterPage returns the register page
+func RegisterPage(c echo.Context) (err error) {
 	defer util.Catch(&err)
 
 	err = c.Render(http.StatusOK, "register.tmpl", nil)

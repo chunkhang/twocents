@@ -7,8 +7,8 @@ import (
 	"github.com/labstack/echo"
 )
 
-// Home returns the home page
-func Home(c echo.Context) (err error) {
+// HomePage returns the home page
+func HomePage(c echo.Context) (err error) {
 	defer util.Catch(&err)
 
 	err = c.Render(http.StatusOK, "home.tmpl", map[string]interface{}{
