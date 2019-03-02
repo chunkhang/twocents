@@ -1,10 +1,7 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/chunkhang/twocents/config"
-	"github.com/chunkhang/twocents/route"
+	"github.com/chunkhang/twocents/server"
 	"github.com/chunkhang/twocents/util"
 	log "github.com/sirupsen/logrus"
 )
@@ -15,9 +12,6 @@ func init() {
 }
 
 func main() {
-	router, err := route.Init()
+	err := server.Start()
 	util.Check(err)
-
-	port := fmt.Sprintf(":%s", config.Port)
-	router.Start(port)
 }

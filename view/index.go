@@ -12,8 +12,8 @@ import (
 )
 
 const (
-	layoutDirectory = "view/layout"
-	pageDirectory   = "view/page"
+	layoutDirectory = "template/layout"
+	pageDirectory   = "template/page"
 	fileExtension   = ".tmpl"
 )
 
