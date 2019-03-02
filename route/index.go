@@ -32,8 +32,9 @@ func Init() (e *echo.Echo, err error) {
 	e.Renderer = renderer
 
 	e.GET("/", controller.HomePage)
-
 	e.GET("/register", controller.RegisterPage)
+	e.GET("/login", controller.LoginPage)
+	e.GET("/about", controller.AboutPage)
 
 	e.POST("/users", controller.CreateUser)
 
