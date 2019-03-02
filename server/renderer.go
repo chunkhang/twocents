@@ -1,8 +1,7 @@
-package view
+package server
 
 import (
 	"errors"
-	"fmt"
 	"html/template"
 	"io"
 	"path/filepath"
@@ -12,8 +11,8 @@ import (
 )
 
 const (
-	layoutDirectory = "template/layout"
-	pageDirectory   = "template/page"
+	layoutDirectory = "view/layout"
+	pageDirectory   = "view/page"
 	fileExtension   = ".tmpl"
 )
 
@@ -38,15 +37,14 @@ func (t *Registry) Render(w io.Writer, name string, data interface{}, c echo.Con
 	return
 }
 
-// Init builds all the templates
-func Init() (r *Registry, err error) {
+func (s *server) setRenderer() (err error) {
 	defer util.Catch(&err)
-	r = &Registry{}
+	r := &Registry{}
 
-	layoutFiles, err := getFiles(layoutDirectory, fileExtension)
+	layoutFiles, err := util.GetFiles(layoutDirectory, fileExtension)
 	util.Check(err)
 
-	pageFiles, err := getFiles(pageDirectory, fileExtension)
+	pageFiles, err := util.GetFiles(pageDirectory, fileExtension)
 	util.Check(err)
 
 	templates := make(map[string]*template.Template)
@@ -58,11 +56,7 @@ func Init() (r *Registry, err error) {
 	}
 	r.templates = templates
 
-	return
-}
+	s.Renderer = r
 
-func getFiles(directory string, extension string) (files []string, err error) {
-	pattern := fmt.Sprintf("%s/*%s", directory, extension)
-	files, err = filepath.Glob(pattern)
 	return
 }
