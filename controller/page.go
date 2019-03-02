@@ -24,7 +24,9 @@ func HomePage(c echo.Context) (err error) {
 func RegisterPage(c echo.Context) (err error) {
 	defer util.Catch(&err)
 
-	err = c.Render(http.StatusOK, "register.tmpl", nil)
+	err = c.Render(http.StatusOK, "register.tmpl", map[string]interface{}{
+		"csrf": c.Get("csrf").(string),
+	})
 	util.Check(err)
 
 	return

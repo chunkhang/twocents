@@ -20,5 +20,9 @@ func (s *server) setConfig() {
 	}))
 	s.Use(middleware.Gzip())
 	s.Use(middleware.CORS())
+	s.Use(middleware.CSRFWithConfig(middleware.CSRFConfig{
+		TokenLookup: "form:csrf",
+	}))
+	s.Use(middleware.Secure())
 	s.Use(middleware.Recover())
 }
