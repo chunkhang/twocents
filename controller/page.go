@@ -32,17 +32,19 @@ func RegisterPage(c echo.Context) (err error) {
 	return
 }
 
-// LoginPage returns the register page
+// LoginPage returns the login page
 func LoginPage(c echo.Context) (err error) {
 	defer util.Catch(&err)
 
-	err = c.Render(http.StatusOK, "login.tmpl", nil)
+	err = c.Render(http.StatusOK, "login.tmpl", map[string]interface{}{
+		"csrf": c.Get("csrf").(string),
+	})
 	util.Check(err)
 
 	return
 }
 
-// AboutPage returns the register page
+// AboutPage returns the about page
 func AboutPage(c echo.Context) (err error) {
 	defer util.Catch(&err)
 

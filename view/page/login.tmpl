@@ -7,7 +7,9 @@
         <div class="box">
           <h2 class="title">Login</h2>
 
-          <form action="/users" method="post">
+          <form action="/login" method="post">
+            <input type="hidden" name="csrf" value="{{index . "csrf"}}">
+
             <div class="field">
               <label class="label">Email</label>
               <div class="control has-icons-left">
@@ -28,22 +30,12 @@
               </div>
             </div>
 
-            <div class="field">
-              <label class="label">Confirm Password</label>
-              <div class="control has-icons-left">
-                <input class="input" type="password" name="password_confirm" required>
-                <span class="icon is-small is-left">
-                  <i class="fas fa-lock"></i>
-                </span>
-              </div>
-            </div>
-
             <div class="field is-grouped">
               <div class="control">
                 <button class="button is-link">Submit</button>
               </div>
               <div class="control">
-                <a class="button is-text" href="/login">Log in instead</a>
+                <a class="button is-text" href="/register">Register instead</a>
               </div>
             </div>
           </form>
