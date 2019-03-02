@@ -8,7 +8,7 @@ import (
 
 const (
 	staticDirectory = "static"
-	assetDirectory  = "asset"
+	assetDirectory  = "assets"
 	logFormat       = "${time_rfc3339}: ${method} ${uri} ${status} (${latency_human})\n"
 )
 
