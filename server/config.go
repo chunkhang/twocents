@@ -8,13 +8,13 @@ import (
 
 const (
 	staticDirectory = "static"
-	publicDirectory = "public"
+	assetDirectory  = "asset"
 	logFormat       = "${time_rfc3339}: ${method} ${uri} ${status} (${latency_human})\n"
 )
 
 func (s *server) setConfig() {
 	s.HideBanner = true
-	s.Static(fmt.Sprintf("/%s", staticDirectory), publicDirectory)
+	s.Static(fmt.Sprintf("/%s", staticDirectory), assetDirectory)
 	s.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
 		Format: logFormat,
 	}))
