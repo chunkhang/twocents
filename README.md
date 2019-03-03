@@ -13,8 +13,12 @@
 
 ## Running
 
-- `docker-compose up`
+- `docker-compose up -d`
 - `open http://localhost`
+
+## Logging
+
+- `docker-compose logs -f app`
 
 ## Stopping
 

@@ -3,7 +3,7 @@ package server
 import (
 	"fmt"
 
-	"github.com/chunkhang/twocents/config"
+	"github.com/chunkhang/twocents/app/config"
 	"github.com/gorilla/sessions"
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/middleware"

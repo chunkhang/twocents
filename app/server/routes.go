@@ -1,7 +1,7 @@
 package server
 
 import (
-	"github.com/chunkhang/twocents/controller"
+	"github.com/chunkhang/twocents/app/controller"
 )
 
 func (s *server) setRoutes() {

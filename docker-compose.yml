@@ -1,14 +1,30 @@
-version: '3'
+version: '2.4'
 services:
+  postgres:
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
+    image: healthcheck/postgres:alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=twocents
+      - POSTGRES_PASSWORD=
+      - POSTRES_DB=twocents-database
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
   app:
     build:
-      context: .
+      context: ./app
       dockerfile: Dockerfile
     image: twocents:latest
-    tty: true
     ports:
       - 80:3000
-    volumes:
-      - ./:/go/src/github.com/chunkhang/twocents
     env_file:
-      - app.env
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./app:/go/src/github.com/chunkhang/twocents/app
+

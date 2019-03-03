@@ -3,8 +3,8 @@ package server
 import (
 	"fmt"
 
-	"github.com/chunkhang/twocents/config"
-	"github.com/chunkhang/twocents/util"
+	"github.com/chunkhang/twocents/app/config"
+	"github.com/chunkhang/twocents/app/util"
 	"github.com/labstack/echo"
 )
 

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/chunkhang/twocents/server"
-	"github.com/chunkhang/twocents/util"
+	"github.com/chunkhang/twocents/app/server"
+	"github.com/chunkhang/twocents/app/util"
 	log "github.com/sirupsen/logrus"
 )
 
