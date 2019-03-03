@@ -1,15 +1,20 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/chunkhang/twocents/util"
 	"github.com/labstack/echo"
+	store "github.com/labstack/echo-contrib/session"
 )
 
 // HomePage returns the home page
 func HomePage(c echo.Context) (err error) {
 	defer util.Catch(&err)
+
+	session, _ := store.Get("session", c)
+	fmt.Printf("session.Values[\"foo\"] = %+v\n", session.Values["foo"])
 
 	err = c.Render(http.StatusOK, "home.tmpl", map[string]interface{}{
 		"title":    "Hello World",

@@ -10,3 +10,5 @@ services:
       - 80:3000
     volumes:
       - ./:/go/src/github.com/chunkhang/twocents
+    env_file:
+      - app.env

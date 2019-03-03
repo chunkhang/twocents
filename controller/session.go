@@ -6,6 +6,7 @@ import (
 	valid "github.com/asaskevich/govalidator"
 	"github.com/chunkhang/twocents/util"
 	"github.com/labstack/echo"
+	store "github.com/labstack/echo-contrib/session"
 )
 
 type loginForm struct {
@@ -17,6 +18,8 @@ type loginForm struct {
 func CreateSession(c echo.Context) (err error) {
 	defer util.Catch(&err)
 
+	session, _ := store.Get("session", c)
+
 	form := new(loginForm)
 	if err = c.Bind(form); err != nil {
 		return c.String(http.StatusBadRequest, err.Error())
@@ -26,6 +29,9 @@ func CreateSession(c echo.Context) (err error) {
 	if err != nil {
 		return c.String(http.StatusBadRequest, err.Error())
 	}
+
+	session.Values["foo"] = "bar"
+	session.Save(c.Request(), c.Response())
 
 	return c.Redirect(http.StatusSeeOther, "/")
 }

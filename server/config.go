@@ -3,6 +3,9 @@ package server
 import (
 	"fmt"
 
+	"github.com/chunkhang/twocents/config"
+	"github.com/gorilla/sessions"
+	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/middleware"
 )
 
@@ -25,4 +28,5 @@ func (s *server) setConfig() {
 	}))
 	s.Use(middleware.Secure())
 	s.Use(middleware.Recover())
+	s.Use(session.Middleware(sessions.NewCookieStore(config.StoreKey)))
 }
