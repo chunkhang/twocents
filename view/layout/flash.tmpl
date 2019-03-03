@@ -1,0 +1,10 @@
+{{define "flash"}}
+
+{{range index . "flashes"}}
+  <div class="notification is-danger">
+    <button class="delete"></button>
+    {{.}}
+  </div>
+{{end}}
+
+{{end}}

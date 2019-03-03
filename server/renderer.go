@@ -28,12 +28,16 @@ type Registry struct {
 
 // Render renders the page with given data
 func (t *Registry) Render(w io.Writer, name string, data interface{}, c echo.Context) (err error) {
+	defer util.Catch(&err)
+
 	template, ok := t.templates[name]
 	if ok {
 		err = template.ExecuteTemplate(w, "main", data)
 	} else {
 		err = errors.New("Template not found: " + name)
 	}
+	util.Check(err)
+
 	return
 }
 

@@ -1,12 +1,12 @@
 package controller
 
 import (
-	"errors"
 	"net/http"
+	"strings"
 
 	valid "github.com/asaskevich/govalidator"
-	"github.com/chunkhang/twocents/util"
 	"github.com/labstack/echo"
+	store "github.com/labstack/echo-contrib/session"
 )
 
 type registerForm struct {
@@ -17,7 +17,7 @@ type registerForm struct {
 
 // CreateUser creates a new user
 func CreateUser(c echo.Context) (err error) {
-	defer util.Catch(&err)
+	session, _ := store.Get("user_session", c)
 
 	form := new(registerForm)
 	if err = c.Bind(form); err != nil {
@@ -26,11 +26,20 @@ func CreateUser(c echo.Context) (err error) {
 
 	_, err = valid.ValidateStruct(form)
 	if err != nil {
-		return c.String(http.StatusBadRequest, err.Error())
+		messages := strings.Split(err.Error(), ";")
+		for _, message := range messages {
+			session.AddFlash(message)
+		}
+		session.Save(c.Request(), c.Response())
+
+		return c.Redirect(http.StatusSeeOther, "/register")
 	}
 
 	if form.Password != form.PasswordConfirm {
-		return c.String(http.StatusBadRequest, errors.New("Passwords do not match").Error())
+		session.AddFlash("Passwords do not match")
+		session.Save(c.Request(), c.Response())
+
+		return c.Redirect(http.StatusSeeOther, "/register")
 	}
 
 	return c.Redirect(http.StatusSeeOther, "/")
