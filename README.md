@@ -4,8 +4,9 @@
 
 ## Dependencies
 
-- [Go](https://golang.org/)
 - [Docker](https://www.docker.com/)
+- [Go](https://golang.org/)
+- [Postgres](https://www.postgresql.org/)
 
 ## Building
 
