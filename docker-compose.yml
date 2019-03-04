@@ -4,7 +4,7 @@ services:
     build:
       context: ./postgres
       dockerfile: Dockerfile
-    image: healthcheck/postgres:alpine
+    image: twocents/postgres:alpine
     ports:
       - 5432:5432
     environment:
@@ -16,7 +16,7 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile
-    image: twocents:latest
+    image: twocents/app:latest
     ports:
       - 80:3000
     env_file:
